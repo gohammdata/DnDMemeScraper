@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import praw
-import pandas
 import random
 
 
