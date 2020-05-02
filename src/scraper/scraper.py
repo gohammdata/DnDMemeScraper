@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 import praw
-import pandas as pd
-import datetime as dt
+import pandas
+import random
+
+
+def divide_chunks(l, n):
+    # looping till length l
+    for i in range(0, len(l), n):
+        yield l[i : i + n]
 
 
 def main():
@@ -36,8 +42,15 @@ def main():
         topics_dict["created"].append(submission.created)
         topics_dict["body"].append(submission.selftext)
 
-    topics_data = pd.DataFrame(topics_dict)
-    topics_data.to_csv("top25.csv", index=False)
+    url_list = []
+
+    for url in topics_dict["url"]:
+        url_list.append(url)
+
+    random.shuffle(url_list)
+
+    dank_memes = list(divide_chunks(url_list, 5))
+    print(dank_memes)
 
 
 if __name__ == "__main__":
