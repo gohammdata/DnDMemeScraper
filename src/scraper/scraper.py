@@ -47,9 +47,9 @@ def main():
     for url in topics_dict["url"]:
         url_list.append(url)
 
-    random.shuffle(url_list)
+    shuffled_url_list = random.shuffle(url_list)
 
-    dank_memes = list(divide_chunks(url_list, 5))
+    dank_memes = list(divide_chunks(shuffled_url_list, 5))
     print(dank_memes)
 
 
