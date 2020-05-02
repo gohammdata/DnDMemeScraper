@@ -1,9 +1,9 @@
 import praw
 from praw.exceptions import PRAWException
-import pandas
 
 
-class RedditScraper():
+class RedditScraper:
+    db = None
     topics_dict = {
         "title": [],
         "score": [],
@@ -14,19 +14,19 @@ class RedditScraper():
         "body": [],
     }
 
-    def __init__(self, cid, csecret, uagent, user, passwd):
-        self.cid = cid
-        self.csecret = csecret
-        self.uagent = uagent
-        self.user = user
-        self.passwd = passwd
+    def __init__(self, appid, secretkey, useragent, username, password):
+        self.appid = appid
+        self.secretkey = secretkey
+        self.useragent = useragent
+        self.username = username
+        self.password = password
         try:
             self.praw = praw.Reddit(
-                self.cid,
-                self.csecret,
-                self.uagent,
-                self.user,
-                self.passwd
+                client_id=appid,
+                client_secret=secretkey,
+                user_agent=useragent,
+                username=username,
+                password=password
             )
         except PRAWException:
             self.praw = None
@@ -38,19 +38,6 @@ class RedditScraper():
 
         subreddit = self.praw.subreddit(subreddit_name)
 
-        top_posts = subreddit.top(limit=25)
-        for post in top_posts:
-            self.topics_dict["title"].append(post.title)
-            self.topics_dict["score"].append(post.score)
-            self.topics_dict["id"].append(post.id)
-            self.topics_dict["url"].append(post.url)
-            self.topics_dict["comms_num"].append(post.num_comments)
-            self.topics_dict["created"].append(post.created)
-            self.topics_dict["body"].append(post.selftext)
+        posts = subreddit.top(limit=25)
 
-    def save_to_csv(self, outName):
-        if not self.topics_dict:
-            return
-
-        topics_df = pandas.DataFrame(self.topics_dict)
-        topics_df.to_csv(outName, index=False)
+        return posts

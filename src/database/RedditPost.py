@@ -1,10 +1,9 @@
-from peewee import SqliteDatabase, fn, IntegerField, CharField
-from playhouse.signals import Model, pre_save
+from peewee import IntegerField, CharField, Model
 
-from Database import db
+from .Database import db
 
 
-class RedditPosts(Model):
+class RedditPost(Model):
     rid = CharField(unique=True)
     title = CharField()
     score = IntegerField()
@@ -15,3 +14,6 @@ class RedditPosts(Model):
 
     class Meta:
         database = db
+
+    def __repr__(self):
+        return f'<{self.rid}> {self.title}'

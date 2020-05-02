@@ -1,13 +1,14 @@
-from peewee import SqliteDatabase, fn, IntegerField, CharField
-from playhouse.signals import Model, pre_save
+from peewee import SqliteDatabase
 
 db = SqliteDatabase("parser.db")
+
 
 class Database():
     db = db
 
-    def connect():
+    def connect(self):
         self.db.connect()
 
-    def create(table_list):
-        self.db.create_tables(table_list)
+    def create(self, table_list):
+        with self.db:
+            self.db.create_tables(table_list)
