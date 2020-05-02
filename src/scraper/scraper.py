@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 import praw
+import os
 import pandas as pd
 import datetime as dt
-
+from dotenv import load_dotenv  #dotenv (.env) or direnv (.envrc)?  Using dotenv and (.env) as I think works best for Heroku.
 
 def main():
     reddit = praw.Reddit(
-        client_id="./.envrc/id",
-        client_secret="./.envrc/key",
+        client_id= os.getenv('CLIENT_ID'),
+        client_secret= os.getenv('CLIENT_SECRET'),
         user_agent="DnD Memes",
-        username="./.envrc/user",
-        password="./.envrc/password",
+        username= os.getenv('REDDITMEMES_USERNAME'),
+        password = os.getenv('REDDITMEMES_PASSWORD'),
     )
 
     topics_dict = {
@@ -41,4 +42,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main()  #Recommended in Discord Bot, but can we implement classes and OOP? Python probably has whiz stuff around this, but I like objects.
