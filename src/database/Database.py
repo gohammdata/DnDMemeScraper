@@ -3,15 +3,11 @@ from playhouse.signals import Model, pre_save
 
 db = SqliteDatabase("parser.db")
 
+class Database():
+    db = db
 
-class ParseData(Model):
-    rid = CharField()
-    title = CharField()
-    score = IntegerField()
-    url = CharField()
-    comments = IntegerField()
-    created = IntegerField()
-    body = CharField()
+    def connect():
+        self.db.connect()
 
-    class Meta:
-        database = db
+    def create(table_list):
+        self.db.create_tables(table_list)
