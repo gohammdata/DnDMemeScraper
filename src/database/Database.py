@@ -1,9 +1,7 @@
-from peewee import (
-    SqliteDatabase, fn, IntegerField, CharField
-)
+from peewee import SqliteDatabase, fn, IntegerField, CharField
 from playhouse.signals import Model, pre_save
 
-db = SqliteDatabase('parser.db')
+db = SqliteDatabase("parser.db")
 
 
 class ParseData(Model):
