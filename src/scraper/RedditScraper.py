@@ -26,10 +26,14 @@ class RedditScraper:
                 client_secret=secretkey,
                 user_agent=useragent,
                 username=username,
-                password=password
+                password=password,
             )
         except PRAWException:
             self.praw = None
+            print(
+                "Error: Failed to make Reddit connection. Check your variables and ensure Reddit is up and responding."
+            )
+            quit()
 
     def parse_subreddit(self, subreddit_name):
         # verify praw object is set up
