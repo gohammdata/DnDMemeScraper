@@ -3,6 +3,8 @@ from dotenv import find_dotenv, load_dotenv
 from scraper import RedditScraper
 import os
 
+from peewee import IntegrityError
+
 
 def main():
     # load .env environment files
@@ -31,8 +33,11 @@ def main():
             created=post.created,
             body=post.selftext,
         )
-        print(tmp_reddit_post)
-        tmp_reddit_post.save()
+        try:
+            tmp_reddit_post.save()
+            print(f'<{post.id}> {post.title}')
+        except IntegrityError:
+            print(f'{post.id} already in cache')
 
 
 if __name__ == "__main__":
