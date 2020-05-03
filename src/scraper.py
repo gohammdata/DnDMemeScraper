@@ -25,21 +25,23 @@ def main():
 
     posts = scraper.parse_subreddit("dndmemes")
     for post in posts:
-        # create database object
-        tmp_reddit_post = RedditPost(
-            rid=post.id,
-            title=post.title,
-            score=post.score,
-            url=post.url,
-            comments=post.num_comments,
-            created=post.created,
-            body=post.selftext,
-        )
-        try:
-            tmp_reddit_post.save()
-            print(f"<{post.id}> {post.title}")
-        except IntegrityError:
-            print(f"{post.id} already in cache")
+        # make sure it's an image post
+        if "i.redd.it" or "i.imgur.com" in post.url:
+            # create database object
+            tmp_reddit_post = RedditPost(
+                rid=post.id,
+                title=post.title,
+                score=post.score,
+                url=post.url,
+                comments=post.num_comments,
+                created=post.created,
+                body=post.selftext,
+            )
+            try:
+                tmp_reddit_post.save()
+                print(f"<{post.id}> {post.title}")
+            except IntegrityError:
+                print(f"{post.id} already in cache")
 
 
 if __name__ == "__main__":
