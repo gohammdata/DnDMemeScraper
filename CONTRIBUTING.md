@@ -3,7 +3,7 @@
 To contribute you will need to be have Python 3 and install the Python dependencies. The supported method is using `pipenv`.
 
 ```bash
-pip install pipenv
+pip3 install pipenv
 git clone https://github.com/gohammdata/DnDMemeScraper.git
 cd /path/to/DnDMemeScraper
 pipenv --three
