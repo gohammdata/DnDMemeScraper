@@ -38,6 +38,6 @@ class RedditScraper:
 
         subreddit = self.praw.subreddit(subreddit_name)
 
-        posts = subreddit.top(limit=25)
+        posts = subreddit.hot(limit=100)
 
         return posts
