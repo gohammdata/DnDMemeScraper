@@ -14,6 +14,3 @@ class RedditPost(Model):
 
     class Meta:
         database = db
-
-    def __repr__(self):
-        return f'<{self.rid}> {self.title}'
