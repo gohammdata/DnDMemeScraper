@@ -26,7 +26,7 @@ def main():
     posts = scraper.parse_subreddit("dndmemes")
     for post in posts:
         # make sure it's an image post
-        if "i.redd.it" or "i.imgur.com" in post.url:
+        if not post.selftext:
             # create database object
             tmp_reddit_post = RedditPost(
                 rid=post.id,
