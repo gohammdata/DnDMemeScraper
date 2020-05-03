@@ -109,4 +109,5 @@ ENV/
 
 .autoenv.zsh
 test.txt
+*.db
 

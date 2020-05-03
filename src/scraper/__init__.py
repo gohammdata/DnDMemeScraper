@@ -1,1 +1,1 @@
-from RedditScraper import RedditScraper
+from .RedditScraper import RedditScraper
