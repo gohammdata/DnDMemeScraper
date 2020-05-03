@@ -1,14 +1,16 @@
 # Contributing
 
-To contribute all that's needed is to install the python dependencies needed.
+To contribute you will need to be have Python 3 and install the Python dependencies. The supported method is using `pipenv`.
 
 ```bash
 pip install pipenv
+git clone https://github.com/gohammdata/DnDMemeScraper.git
+cd /path/to/DnDMemeScraper
+pipenv --three
 pipenv install
 ```
-If using a Linux Debian distro specify python3 and pip3.
-Otherwise it will default to v2.7 which is not compatible.
 
+To enter the `pipenv` environment, run `pipenv shell`.
 
 <b>Discord Invite Link</b>
 
