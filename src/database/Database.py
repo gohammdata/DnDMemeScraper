@@ -3,7 +3,7 @@ from peewee import SqliteDatabase
 db = SqliteDatabase("parser.db")
 
 
-class Database():
+class Database:
     db = db
 
     def connect(self):

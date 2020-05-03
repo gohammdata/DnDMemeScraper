@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from database import Database, RedditPost
 from dotenv import find_dotenv, load_dotenv
 from scraper import RedditScraper
@@ -14,14 +16,14 @@ def main():
     db.create([RedditPost])
     # create scraper
     scraper = RedditScraper(
-        os.getenv('REDDIT_APP_ID'),
-        os.getenv('REDDIT_SECRET_KEY'),
-        os.getenv('REDDIT_USERAGENT'),
-        os.getenv('REDDIT_USERNAME'),
-        os.getenv('REDDIT_PASSWORD')
+        os.getenv("REDDIT_APP_ID"),
+        os.getenv("REDDIT_SECRET_KEY"),
+        os.getenv("REDDIT_USERAGENT"),
+        os.getenv("REDDIT_USERNAME"),
+        os.getenv("REDDIT_PASSWORD"),
     )
 
-    posts = scraper.parse_subreddit('dndmemes')
+    posts = scraper.parse_subreddit("dndmemes")
     for post in posts:
         # create database object
         tmp_reddit_post = RedditPost(
@@ -35,9 +37,9 @@ def main():
         )
         try:
             tmp_reddit_post.save()
-            print(f'<{post.id}> {post.title}')
+            print(f"<{post.id}> {post.title}")
         except IntegrityError:
-            print(f'{post.id} already in cache')
+            print(f"{post.id} already in cache")
 
 
 if __name__ == "__main__":
