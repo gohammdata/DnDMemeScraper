@@ -1,6 +1,16 @@
-from peewee import SqliteDatabase
+from dotenv import find_dotenv, load_dotenv
+from peewee import PostgresqlDatabase
+import os
 
-db = SqliteDatabase("parser.db")
+
+load_dotenv(find_dotenv())
+db = PostgresqlDatabase(
+    os.getenv("POSTGRES_DATABASE"),
+    user=os.getenv("POSTGRES_USERNAME"),
+    password=os.getenv("POSTGRES_PASSWORD"),
+    host=os.getenv("POSTGRES_HOST"),
+    port=os.getenv("POSTGRES_PORT"),
+)
 
 
 class Database:
