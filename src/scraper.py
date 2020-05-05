@@ -42,6 +42,7 @@ def main():
                 print(f"<{post.id}> {post.title}")
             except IntegrityError:
                 print(f"{post.id} already in cache")
+                db.db.rollback()
 
 
 if __name__ == "__main__":
