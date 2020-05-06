@@ -1,4 +1,4 @@
-from peewee import IntegerField, CharField, Model
+from peewee import CharField, IntegerField, Model, TextField
 
 from .Database import db
 
