@@ -1,11 +1,11 @@
-from peewee import IntegerField, CharField, Model
+from peewee import CharField, IntegerField, Model, TextField
 
 from .Database import db
 
 
 class RedditPost(Model):
     rid = CharField(unique=True)
-    title = CharField()
+    title = TextField()
     score = IntegerField()
     url = CharField()
     comments = IntegerField()
