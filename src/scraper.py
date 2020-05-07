@@ -4,7 +4,7 @@ import os
 
 from dotenv import find_dotenv, load_dotenv
 
-from database import Database, RandomPost, RedditPost
+from database import Database, RedditPost
 from scraper import RedditScraper
 
 
@@ -45,7 +45,7 @@ def main():
             else:
                 print(f"{post.id} already in cache")
 
-    # random_meme = RandomPost.get_random_post()
+    # random_meme = RedditPost().get_random_post()
     # print(random_meme)
 
 
