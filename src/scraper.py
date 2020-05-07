@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from database import Database, RedditPost, RandomPost
-from dotenv import find_dotenv, load_dotenv
-from scraper import RedditScraper
 import os
 
-from peewee import IntegrityError
+from dotenv import find_dotenv, load_dotenv
+
+from database import Database, RandomPost, RedditPost
+from scraper import RedditScraper
 
 
 def main():
