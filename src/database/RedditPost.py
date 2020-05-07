@@ -1,4 +1,4 @@
-from peewee import CharField, IntegerField, Model, TextField
+from peewee import CharField, IntegerField, Model, TextField, fn
 
 from .Database import db
 
@@ -14,3 +14,8 @@ class RedditPost(Model):
 
     class Meta:
         database = db
+
+    def get_random_post(self):
+        query = self.select().order_by(fn.Random())
+        post = query.get()
+        return post
