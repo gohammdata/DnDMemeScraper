@@ -46,7 +46,8 @@ def main():
                 print(f"{post.id} already in cache")
 
     # random_meme = RedditPost().get_random_post()
-    # print(random_meme)
+    # random_meme_url = random_meme.url
+    # print(random_meme_url)
 
 
 if __name__ == "__main__":

@@ -18,5 +18,4 @@ class RedditPost(Model):
     def get_random_post(self):
         query = self.select().order_by(fn.Random())
         post = query.get()
-        post_url = post.url
-        return post_url
+        return post
