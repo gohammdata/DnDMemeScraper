@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from database import Database, RedditPost
+from database import Database, RedditPost, RandomPost
 from dotenv import find_dotenv, load_dotenv
 from scraper import RedditScraper
 import os
@@ -9,11 +9,12 @@ from peewee import IntegrityError
 
 
 def main():
-    # load .env environment files
-    load_dotenv(find_dotenv())
     # create database
     db = Database()
     db.create([RedditPost])
+
+    # load .env environment files
+    load_dotenv(find_dotenv())
     # create scraper
     scraper = RedditScraper(
         os.getenv("REDDIT_APP_ID"),
@@ -37,12 +38,14 @@ def main():
                 created=post.created,
                 body=post.selftext,
             )
-            try:
+            if tmp_reddit_post.get(post.id == f"{post.id}"):
+                print(f"{post.id} already in cache")
+            else:
                 tmp_reddit_post.save()
                 print(f"<{post.id}> {post.title}")
-            except IntegrityError:
-                print(f"{post.id} already in cache")
-                db.db.rollback()
+
+    # random_meme = RandomPost.get_post()
+    # print(random_meme)
 
 
 if __name__ == "__main__":
