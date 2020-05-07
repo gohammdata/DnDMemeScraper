@@ -1,4 +1,4 @@
-from peewee import CharField, IntegerField, Model, TextField, fn
+from peewee import CharField, DateField, IntegerField, Model, TextField, fn
 
 from .Database import db
 
@@ -11,6 +11,7 @@ class RedditPost(Model):
     comments = IntegerField()
     created = IntegerField()
     body = CharField()
+    post_date = DateField()
 
     class Meta:
         database = db
