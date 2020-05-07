@@ -38,13 +38,14 @@ def main():
                 created=post.created,
                 body=post.selftext,
             )
-            if tmp_reddit_post.get(post.id == f"{post.id}"):
-                print(f"{post.id} already in cache")
-            else:
+            reddit_post = RedditPost.get_or_none(rid=f"{post.id}")
+            if reddit_post is None:
                 tmp_reddit_post.save()
                 print(f"<{post.id}> {post.title}")
+            else:
+                print(f"{post.id} already in cache")
 
-    # random_meme = RandomPost.get_post()
+    # random_meme = RandomPost.get_random_post()
     # print(random_meme)
 
 
