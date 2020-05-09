@@ -13,6 +13,7 @@ python-dotenv = "*"
 psycopg2-binary = "*"
 discord = "*"
 datetime = "*"
+discord-webhook = "*"
 
 [requires]
 python_version = "3.8"
