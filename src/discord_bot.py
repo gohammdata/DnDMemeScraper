@@ -1,20 +1,41 @@
-from DiscordBot import DiscordBot
-from database import RedditPost
-from dotenv import find_dotenv, load_dotenv
+#!/usr/bin/env python3
+
 import os
 
+import discord
+from dotenv import find_dotenv, load_dotenv
 
-def main():
-    # load .env environment files
-    load_dotenv(find_dotenv())
+from database import RedditPost
 
-    random_post = RedditPost()
-    random_post = random_post.get_random_post()
-    print(random_post)
+# load .env environment files
+load_dotenv(find_dotenv())
 
-    # client = DiscordBot()
-    # client.run(os.getenv("DISCORD_TOKEN"))
+TOKEN = os.getenv("DISCORD_TOKEN")
+GUILD = os.getenv("DISCORD_GUILD")
+
+client = discord.Client()
 
 
-if __name__ == "__main__":
-    main()
+@client.event
+async def on_ready():
+    guild = discord.utils.get(client.guilds, name=GUILD)
+    print(
+        f"{client.user} is connected to the following guild:\n"
+        f"{guild.name}(id: {guild.id})"
+    )
+
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content == "Meme Me, Brother!":
+        random_meme = RedditPost().get_random_post()
+        random_meme_url = random_meme.url
+        RedditPost().update_post_date(random_meme.id)
+        response = random_meme_url
+        await message.channel.send(response)
+
+
+client.run(TOKEN)

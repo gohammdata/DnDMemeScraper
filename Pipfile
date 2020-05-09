@@ -14,6 +14,7 @@ psycopg2-binary = "*"
 discord = "*"
 datetime = "*"
 discord-py = "*"
+discord-webhook = "*"
 
 [requires]
 python_version = "3.8"
