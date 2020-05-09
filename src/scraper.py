@@ -48,7 +48,7 @@ def main():
     # random_meme = RedditPost().get_random_post()
     # random_meme_url = random_meme.url
     # print(random_meme_url)
-    # RedditPost().update_post_date(random_meme.rid)
+    # RedditPost().update_post_date(random_meme.id)
 
 
 if __name__ == "__main__":

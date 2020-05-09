@@ -25,5 +25,4 @@ class RedditPost(Model):
 
     def update_post_date(self, id):
         post_date = datetime.today().strftime("%Y-%m-%d")
-
-        self.update(post_date=post_date).where(self.rid == id)
+        self.set_by_id(f"{id}", {"post_date": post_date})
