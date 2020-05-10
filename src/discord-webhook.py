@@ -2,7 +2,7 @@
 
 import os
 
-from discord_webhook import DiscordWebhook
+from discord_webhook import DiscordWebhook, DiscordEmbed
 from dotenv import find_dotenv, load_dotenv
 
 from database import RedditPost
@@ -13,9 +13,18 @@ load_dotenv(find_dotenv())
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 
 random_meme = RedditPost().get_random_post()
-random_meme_url = random_meme.url
 
-webhook = DiscordWebhook(url=f"{WEBHOOK_URL}", content=f"{random_meme_url}")
+webhook = DiscordWebhook(url=f"{WEBHOOK_URL}")
+
+# create embed object for webhook
+embed = DiscordEmbed(title=f"{random_meme.title}")
+
+# set image
+embed.set_image(url=f"{random_meme.url}")
+
+# add embed object to webhook
+webhook.add_embed(embed)
+
 response = webhook.execute()
 
 if response.status_code == 204:
