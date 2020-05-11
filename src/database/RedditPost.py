@@ -33,7 +33,7 @@ class RedditPost(Model):
         query = self.select().order_by(fn.Random())
         post = query.get()
 
-        last_posted = timedelta(days=20, minutes=0, seconds=00)
+        last_posted = self.check_post_date(post)
 
         while last_posted < timedelta(days=30):
             query = self.select().order_by(fn.Random())
