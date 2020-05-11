@@ -22,15 +22,15 @@ if random_meme.author is None:
 else:
     author = random_meme.author
 
-webhook = DiscordWebhook(url=f"{WEBHOOK_URL}")
+webhook = DiscordWebhook(url=WEBHOOK_URL)
 
-embed = DiscordEmbed(title=f"{random_meme.title}")
+embed = DiscordEmbed(title=random_meme.title)
 
-embed.add_embed_field(name="Meme Creator", value=f"{author}")
+embed.add_embed_field(name="Meme Creator", value=author)
 
-embed.add_embed_field(name="Originally Created", value=f"{converted_date}")
+embed.add_embed_field(name="Originally Created", value=converted_date)
 
-embed.set_image(url=f"{random_meme.url}")
+embed.set_image(url=random_meme.url)
 
 embed.set_footer(text="Lovingly pulled from https://reddit.com/r/dndmemes")
 

@@ -7,15 +7,6 @@ from .Database import db
 today = date.today()
 
 
-def check_post_date(post):
-    if post.post_date is not None:
-        last_posted = today - post.post_date
-    else:
-        last_posted = timedelta(days=1000, minutes=0, seconds=00)
-
-    return last_posted
-
-
 class RedditPost(Model):
     rid = CharField(unique=True)
     title = TextField()
@@ -30,6 +21,14 @@ class RedditPost(Model):
     class Meta:
         database = db
 
+    def check_post_date(self, post):
+        if post.post_date is not None:
+            last_posted = today - post.post_date
+        else:
+            last_posted = timedelta(days=1000, minutes=0, seconds=00)
+
+        return last_posted
+
     def get_random_post(self):
         query = self.select().order_by(fn.Random())
         post = query.get()
@@ -39,7 +38,7 @@ class RedditPost(Model):
         while last_posted < timedelta(days=30):
             query = self.select().order_by(fn.Random())
             post = query.get()
-            last_posted = check_post_date(post)
+            last_posted = self.check_post_date(post)
 
         return post
 
