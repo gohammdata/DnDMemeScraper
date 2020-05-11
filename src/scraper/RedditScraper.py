@@ -6,6 +6,7 @@ class RedditScraper:
     db = None
     topics_dict = {
         "title": [],
+        "author": [],
         "score": [],
         "id": [],
         "url": [],

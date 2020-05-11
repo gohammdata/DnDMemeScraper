@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 import os
+from datetime import datetime
 
-from discord_webhook import DiscordWebhook, DiscordEmbed
+from discord_webhook import DiscordEmbed, DiscordWebhook
 from dotenv import find_dotenv, load_dotenv
 
 from database import RedditPost
@@ -14,15 +15,25 @@ WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 
 random_meme = RedditPost().get_random_post()
 
-webhook = DiscordWebhook(url=f"{WEBHOOK_URL}")
+converted_date = datetime.utcfromtimestamp(random_meme.created).strftime("%Y-%m-%d")
 
-# create embed object for webhook
-embed = DiscordEmbed(title=f"{random_meme.title}")
+if random_meme.author is None:
+    author = "Unknown"
+else:
+    author = random_meme.author
 
-# set image
-embed.set_image(url=f"{random_meme.url}")
+webhook = DiscordWebhook(url=WEBHOOK_URL)
 
-# add embed object to webhook
+embed = DiscordEmbed(title=random_meme.title)
+
+embed.add_embed_field(name="Meme Creator", value=author)
+
+embed.add_embed_field(name="Originally Created", value=converted_date)
+
+embed.set_image(url=random_meme.url)
+
+embed.set_footer(text="Lovingly pulled from https://reddit.com/r/dndmemes")
+
 webhook.add_embed(embed)
 
 response = webhook.execute()

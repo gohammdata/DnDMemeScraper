@@ -10,6 +10,7 @@ today = date.today()
 class RedditPost(Model):
     rid = CharField(unique=True)
     title = TextField()
+    author = TextField()
     score = IntegerField()
     url = CharField()
     comments = IntegerField()
@@ -20,16 +21,24 @@ class RedditPost(Model):
     class Meta:
         database = db
 
-    def get_random_post(self):
-        query = self.select().order_by(fn.Random())
-        post = query.get()
+    def check_post_date(self, post):
         if post.post_date is not None:
             last_posted = today - post.post_date
         else:
             last_posted = timedelta(days=1000, minutes=0, seconds=00)
+
+        return last_posted
+
+    def get_random_post(self):
+        query = self.select().order_by(fn.Random())
+        post = query.get()
+
+        last_posted = timedelta(days=20, minutes=0, seconds=00)
+
         while last_posted < timedelta(days=30):
             query = self.select().order_by(fn.Random())
             post = query.get()
+            last_posted = self.check_post_date(post)
 
         return post
 
