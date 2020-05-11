@@ -24,16 +24,16 @@ else:
 
 webhook = DiscordWebhook(url=f"{WEBHOOK_URL}")
 
-# create embed object for webhook
 embed = DiscordEmbed(title=f"{random_meme.title}")
 
 embed.add_embed_field(name="Meme Creator", value=f"{author}")
+
 embed.add_embed_field(name="Originally Created", value=f"{converted_date}")
 
-# set image
 embed.set_image(url=f"{random_meme.url}")
 
-# add embed object to webhook
+embed.set_footer(text="Lovingly pulled from https://reddit.com/r/dndmemes")
+
 webhook.add_embed(embed)
 
 response = webhook.execute()
