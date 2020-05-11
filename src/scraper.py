@@ -31,6 +31,7 @@ def main():
             # create database object
             tmp_reddit_post = RedditPost(
                 rid=post.id,
+                author=post.author,
                 title=post.title,
                 score=post.score,
                 url=post.url,

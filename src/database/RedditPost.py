@@ -10,6 +10,7 @@ today = date.today()
 class RedditPost(Model):
     rid = CharField(unique=True)
     title = TextField()
+    author = TextField()
     score = IntegerField()
     url = CharField()
     comments = IntegerField()
