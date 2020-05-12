@@ -13,7 +13,11 @@ load_dotenv(find_dotenv())
 
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 
-random_meme = RedditPost().get_random_post()
+random_meme_gif = True
+
+while random_meme_gif is True:
+    random_meme = RedditPost().get_random_post()
+    random_meme_gif = random_meme.url.endswith(".gif")
 
 converted_date = datetime.utcfromtimestamp(random_meme.created).strftime("%Y-%m-%d")
 
