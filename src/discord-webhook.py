@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import random
 from datetime import datetime
 
 from discord_webhook import DiscordEmbed, DiscordWebhook
@@ -12,6 +13,16 @@ from database import RedditPost
 load_dotenv(find_dotenv())
 
 WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+
+footer_texts = [
+    "Lovingly pulled from",
+    "Organically sourced from",
+    "Culled from the herd of",
+    "Harvested by hand from",
+    "From the private collection of",
+    "Gathered by the natives of",
+    "Rescued from the dragon hoard of",
+]
 
 random_meme_gif = True
 
@@ -36,7 +47,7 @@ embed.add_embed_field(name="Originally Created", value=converted_date)
 
 embed.set_image(url=random_meme.url)
 
-embed.set_footer(text="Lovingly pulled from https://reddit.com/r/dndmemes")
+embed.set_footer(text=f"{random.choice(footer_texts)} https://reddit.com/r/dndmemes")
 
 webhook.add_embed(embed)
 
