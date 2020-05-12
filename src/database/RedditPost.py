@@ -45,3 +45,6 @@ class RedditPost(Model):
 
     def update_post_date(self, id):
         self.set_by_id(f"{id}", {"post_date": today})
+
+    def __str__(self):
+        return f"<{self.rid}> {self.title}"
