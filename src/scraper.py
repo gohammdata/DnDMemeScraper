@@ -38,6 +38,7 @@ def main():
                 comments=post.num_comments,
                 created=post.created,
                 body=post.selftext,
+                subreddit=post.subreddit
             )
             reddit_post = RedditPost.get_or_none(rid=f"{post.id}")
             if reddit_post is None:
