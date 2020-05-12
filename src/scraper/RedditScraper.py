@@ -1,5 +1,6 @@
 import praw
 from praw.exceptions import PRAWException
+from praw.models import Submission
 
 
 class RedditScraper:
@@ -46,3 +47,7 @@ class RedditScraper:
         posts = subreddit.hot(limit=100)
 
         return posts
+
+    def get_post_by_rid(self, rid):
+        post = Submission(self.praw, rid)
+        return post

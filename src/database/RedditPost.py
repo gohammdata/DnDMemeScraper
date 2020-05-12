@@ -17,6 +17,7 @@ class RedditPost(Model):
     created = IntegerField()
     body = CharField()
     post_date = DateField(null=True)
+    subreddit = TextField(null=True)
 
     class Meta:
         database = db
