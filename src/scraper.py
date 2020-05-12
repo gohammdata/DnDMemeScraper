@@ -42,7 +42,7 @@ def main():
             reddit_post = RedditPost.get_or_none(rid=f"{post.id}")
             if reddit_post is None:
                 tmp_reddit_post.save()
-                print(f"<{post.id}> {post.title}")
+                print(f"{tmp_reddit_post}")
             else:
                 print(f"{post.id} already in cache")
 
