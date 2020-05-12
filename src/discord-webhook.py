@@ -47,7 +47,9 @@ embed.add_embed_field(name="Originally Created", value=converted_date)
 
 embed.set_image(url=random_meme.url)
 
-embed.set_footer(text=f"{random.choice(footer_texts)} https://reddit.com/r/dndmemes")
+embed.set_footer(
+    text=f"{random.choice(footer_texts)} https://reddit.com/r/{random_meme.subreddit}"
+)
 
 webhook.add_embed(embed)
 
