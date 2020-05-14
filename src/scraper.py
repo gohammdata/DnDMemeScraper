@@ -4,8 +4,9 @@ import os
 
 from dotenv import find_dotenv, load_dotenv
 
-from database import Database, RedditPost
-from scraper import RedditScraper
+from database.Database import Database
+from database.RedditPost import RedditPost
+from scraper.RedditScraper import RedditScraper
 
 
 def main():
