@@ -19,12 +19,12 @@ def main():
 
     for post in posts:
         if post.author and post.subreddit:
-            print(f'Skipping {post.rid} because data already exists')
+            print(f"Skipping {post.rid} because data already exists")
             continue
         # get reddit post from PRAW
-        print(f'<{post.rid}> {post.title}')
+        print(f"<{post.rid}> {post.title}")
         r_post = scraper.get_post_by_rid(post.rid)
-        print(f'{r_post.author} {r_post.subreddit}')
+        print(f"{r_post.author} {r_post.subreddit}")
         post.author = r_post.author
         post.subreddit = r_post.subreddit
         post.save()

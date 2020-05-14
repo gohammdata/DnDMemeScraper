@@ -16,6 +16,4 @@ migrator = PostgresqlMigrator(my_db)
 
 post_date = DateField(null=True)
 
-migrate(
-    migrator.add_column('redditpost', 'post_date', post_date)
-)
+migrate(migrator.add_column("redditpost", "post_date", post_date))
