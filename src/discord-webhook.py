@@ -30,9 +30,7 @@ while random_meme_gif is True:
     random_meme = RedditPost().get_random_post()
     random_meme_gif = random_meme.url.endswith(".gif")
 
-converted_date = datetime.utcfromtimestamp(random_meme.created).strftime(
-    "%Y-%m-%d"
-)
+converted_date = datetime.utcfromtimestamp(random_meme.created).strftime("%Y-%m-%d")
 
 if random_meme.author is None:
     author = "Unknown"
