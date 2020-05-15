@@ -1,2 +1,0 @@
-from pony import orm
-
