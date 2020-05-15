@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 flake8 = "*"
 black = "*"
+pytest = "*"
 
 [packages]
 praw = "*"
@@ -16,6 +17,7 @@ discord = "*"
 datetime = "*"
 discord-py = "*"
 discord-webhook = "*"
+pony = "*"
 
 [requires]
 python_version = "3.8"

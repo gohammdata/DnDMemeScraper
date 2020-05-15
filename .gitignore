@@ -107,7 +107,7 @@ ENV/
 # IDE settings
 .vscode/
 
-.autoenv.zsh
+.autoenv*
 test.txt
 *.db
 

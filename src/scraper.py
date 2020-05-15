@@ -4,15 +4,17 @@ import os
 
 from dotenv import find_dotenv, load_dotenv
 
-from database.Database import Database
-from database.RedditPost import RedditPost
+from database.database import create_post_from_reddit
+
+# from database.Database import Database
+# from database.RedditPost import RedditPost
 from scraper.RedditScraper import RedditScraper
 
 
 def main():
     # create database
-    db = Database()
-    db.create([RedditPost])
+    # db = Database()
+    # db.create([RedditPost])
 
     # load .env environment files
     load_dotenv(find_dotenv())
@@ -29,24 +31,20 @@ def main():
     for post in posts:
         # make sure it's an image post
         if not post.selftext:
+            db_post = create_post_from_reddit(post)
+            print(db_post)
             # create database object
-            tmp_reddit_post = RedditPost(
-                rid=post.id,
-                author=post.author,
-                title=post.title,
-                score=post.score,
-                url=post.url,
-                comments=post.num_comments,
-                created=post.created,
-                body=post.selftext,
-                subreddit=post.subreddit,
-            )
-            reddit_post = RedditPost.get_or_none(rid=f"{post.id}")
-            if reddit_post is None:
-                tmp_reddit_post.save()
-                print(f"{tmp_reddit_post}")
-            else:
-                print(f"{post.id} already in cache")
+            # tmp_reddit_post = RedditPost(
+            #     rid=post.id,
+            #     author=post.author,
+            #     title=post.title,
+            #     score=post.score,
+            #     url=post.url,
+            #     comments=post.num_comments,
+            #     created=post.created,
+            #     body=post.selftext,
+            #     subreddit=post.subreddit,
+            # )
 
     # random_meme = RedditPost().get_random_post()
     # random_meme_url = random_meme.url
