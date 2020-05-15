@@ -4,7 +4,7 @@ import os
 
 from dotenv import find_dotenv, load_dotenv
 
-from database.database import create_post_from_reddit
+from database.Database import create_post_from_reddit
 
 # from database.Database import Database
 # from database.RedditPost import RedditPost

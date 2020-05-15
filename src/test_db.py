@@ -1,6 +1,6 @@
 from pony.orm import db_session, set_sql_debug
 
-from database.database import RedditPost, get_random_post, get_post
+from database.Database import RedditPost, get_random_post, get_post
 import datetime
 
 
