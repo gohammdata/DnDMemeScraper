@@ -46,10 +46,7 @@ def get_post(rid):
 
 @db_session
 def get_all_posts():
-    posts = []
-    for post in select(post for post in RedditPost):
-        posts.append(post)
-    return posts
+    return select(post for post in RedditPost)
 
 
 @db_session

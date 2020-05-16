@@ -3,8 +3,10 @@
 import requests
 
 from database.Database import RedditPost, get_all_posts
+from pony.orm import db_session
 
 
+@db_session
 def main():
     posts = get_all_posts()
 
