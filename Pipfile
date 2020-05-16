@@ -18,6 +18,7 @@ datetime = "*"
 discord-py = "*"
 discord-webhook = "*"
 pony = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"
