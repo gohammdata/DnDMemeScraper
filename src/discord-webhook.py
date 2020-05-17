@@ -7,8 +7,7 @@ from datetime import datetime
 from discord_webhook import DiscordEmbed, DiscordWebhook
 from dotenv import find_dotenv, load_dotenv
 
-# from database.RedditPost import RedditPost
-from database import database
+from database.Database import get_random_post, update_post_date
 
 # load .env environment files
 load_dotenv(find_dotenv())
@@ -28,7 +27,7 @@ footer_texts = [
 random_meme_gif = True
 
 while random_meme_gif is True:
-    random_meme = database.get_random_post()
+    random_meme = get_random_post()
     random_meme_gif = random_meme.url.endswith(".gif")
     random_meme_gif = random_meme.url.startswith("v.")
 
@@ -58,4 +57,4 @@ webhook.add_embed(embed)
 response = webhook.execute()
 
 if response.status_code == 204:
-    database.update_post_date(random_meme.id)
+    update_post_date(random_meme.id)
