@@ -26,7 +26,10 @@ def main():
         # make sure it's an image post
         if not post.selftext:
             db_post = create_post_from_reddit(post)
-            print(db_post)
+            if db_post:
+                print(db_post)
+            else:
+                print("Post already exists in database")
 
 
 if __name__ == "__main__":
