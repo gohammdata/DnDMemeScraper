@@ -51,12 +51,18 @@ def get_all_posts():
 
 @db_session
 def get_random_post():
-    thirty_days_ago = datetime.datetime.now().date() - datetime.timedelta(days=30)
-    return select(p for p in RedditPost if p.post_date < thirty_days_ago).random(1)[0]
+    thirty_days_ago = datetime.datetime.now().date() - datetime.timedelta(
+        days=30
+    )
+    return select(
+        p for p in RedditPost if p.post_date < thirty_days_ago
+    ).random(1)[0]
 
 
 @db_session
 def create_post_from_reddit(post):
+    if RedditPost.exists(rid=post.id):
+        return
     db_post = RedditPost(
         rid=post.id,
         title=post.title,
