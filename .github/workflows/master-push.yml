@@ -25,7 +25,7 @@ jobs:
       - name: Check with Black
         run: |
           # run black with check utility
-          pipenv run black --check src/
+          pipenv run black -l 79 --check src/
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
