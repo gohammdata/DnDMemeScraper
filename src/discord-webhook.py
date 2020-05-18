@@ -31,7 +31,9 @@ while random_meme_gif is True:
     random_meme_gif = random_meme.url.endswith(".gif")
     random_meme_gif = random_meme.url.startswith("v.")
 
-converted_date = datetime.utcfromtimestamp(random_meme.created).strftime("%Y-%m-%d")
+converted_date = datetime.utcfromtimestamp(random_meme.created).strftime(
+    "%Y-%m-%d"
+)
 
 if random_meme.author is None:
     author = "Unknown"
